@@ -1,0 +1,124 @@
+$tab-border-color: #9b9b9b;
+
+#tabs {
+  @include children-inline;
+  @include gradient(#c4c2c4, #bfbdbf);
+  @include gradient(#c3c1c3, #bebdbe);
+  overflow: hidden;
+
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: $tab-border-color;
+  }
+
+  .tab {
+    @include gradient(#c3c1c3, #bebdbe);
+    color: #4d4d4d;
+    margin: {
+      right: 0px;
+      bottom: 0px;
+    };
+    line-height: 22px;
+    font: {
+      size: 12px;
+    };
+    padding: 1px 27px 1px 27px;
+    min-width: 90px;
+    text-align: center;
+    border-bottom: none;
+    position: relative;
+    border-right: 1px solid #aaa;
+
+    .close {
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      text-decoration: none;
+      vertical-align: top;
+
+      text-align: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 2px;
+      display: none;
+      background: transparent;
+
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        background: #646364;
+        left: 4px;
+        right: 4px;
+        height: 1px;
+        top: 8px;
+      }
+      &:before {
+        transform: rotate(45deg);
+      }
+      &:after {
+        transform: rotate(-45deg);
+      }
+
+      &:hover {
+        @include gradient(#a7a5a7, #a3a2a3);
+      }
+    }
+
+    &, > * {
+      @include system-text;
+    }
+
+    &:hover {
+      @include gradient(#b8b7b8, #b4b2b4);
+      .close {
+        display: inline-block;
+      }
+    }
+
+    &.active {
+      @include gradient(#dcdadc, #d6d4d6);
+      position: relative;
+
+      border-color: #999;
+      box-shadow: inset 0px 0px 3px rgba(255, 255, 255, 0.5), 0px 2px 3px rgba(0, 0, 0, 0.2);
+
+      padding-bottom: 0;
+      &:hover .close {
+        &:hover {
+          @include gradient(#cac8ca, #c5c4c5);
+        }
+        &:before, &:after {
+          background: #797879;
+        }
+      }
+    }
+  }
+
+  .inspector {
+    float: right;
+    margin-left: 5px;
+  }
+}
+
+.tab-loader {
+  padding: 20px;
+  color: #666;
+}
+
+.tab-message {
+  padding: 11px;
+  color: #333;
+  position: absolute;
+}
+.window-content.content .tab-message {
+  padding: 20px;
+}
+

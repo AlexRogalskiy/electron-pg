@@ -1,0 +1,21 @@
+.rescol-wrapper.with-borders
+  .rescol-header-wrapper
+  .rescol-content-wrapper
+    if data.fields
+      table
+        thead
+          tr
+            each column in data.fields
+              - var type = column_type_label(column)
+              th(class= 'format-' + type, title= type)= column.name
+        tbody
+          each row in data.rows
+            tr
+              each column, index in data.fields
+                td!= formatCellFromSelect(row[index], column)
+    else
+      table
+        tbody
+          tr
+            td= data.command
+            td OK

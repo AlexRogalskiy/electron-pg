@@ -1,0 +1,165 @@
+$code-font: Consolas, "Liberation Mono", Menlo, Monaco, Lucida Console, Courier New, monospace, serif;
+
+@import "extras/reset";
+@import "extras/mixins";
+
+@mixin system-text {
+  @include unselectable;
+
+  cursor: default;
+}
+
+@include global-reset;
+
+@import "extras/global";
+
+@import "elements/tabs";
+
+#content {
+  overflow: hidden;
+
+  .tabContent {
+    height: 100%;
+  }
+}
+
+$sidebar-footer-height: 25px;
+$sidebar-width: 20%;
+
+@import "extras/mac-native-elements";
+
+@import "screens/login";
+@import "screens/main";
+@import "screens/help";
+@import "elements/sidebar";
+@import "elements/editor";
+@import "elements/app-loader";
+@import "extras/resizable_columns";
+
+@import "elements/alertify.core";
+@import "elements/alertify.default";
+
+@import "screens/main-tabs/structure";
+@import "screens/main-tabs/extensions";
+@import "screens/main-tabs/content";
+@import "screens/main-tabs/users";
+@import "screens/main-tabs/info";
+@import "screens/main-tabs/query";
+@import "screens/main-tabs/procedures";
+@import "screens/snippets";
+@import "screens/history";
+
+.clearfix {
+  clear: both;
+}
+
+.grey-cancel-button {
+  button.alertify-button-cancel {
+    border-color: #ADA6A6;
+    background-color: #B8B8B8;
+  }
+}
+
+footer + h4 {
+  margin-top: 15px;
+}
+
+img.app-icon {
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.is-hidden {
+  display: none;
+}
+
+.alertify-dialog form p {
+  margin: 5px 0;
+}
+
+code.general {
+  margin-right: 9px;
+  white-space: pre-wrap;
+  font-family: $code-font;
+  text-align: left;
+}
+
+span.tag.error {
+  font-size: 11px;
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  background: rgba(243, 112, 112, 0.73);
+  line-height: 11px;
+  padding: 2px;
+  margin-left: 5px;
+  margin-right: 2px;
+  margin-top: 2px;
+}
+
+small.help-icon {
+  position: relative;
+  display: inline-block;
+  width: 15px;
+  line-height: 15px;
+  background: rgba(#333, 0.08);
+  font-weight: 500;
+  color: #777;
+  border-radius: 15px;
+  text-align: center;
+  cursor: default;
+  margin-left: 2px;
+  &:after {
+    position: absolute;
+    content: attr(data-tooltip);
+    background-color: #333;
+    color: white;
+    bottom: 20px;
+    left: -75px;
+    width: 145px;
+    padding: 8px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: pre-line;
+    visibility: hidden;
+    opacity: 0;
+  }
+  &:hover {
+    &:after {
+      visibility: visible;
+      opacity: 1;
+      transition: all 0.2s;
+    }
+  }
+}
+
+.docs-link {
+  font-size: 13px;
+  display: inline-block;
+  &:before {
+    content: '';
+    background: {
+      image: url("icons/external-link.png");
+      repeat: no-repeat;
+      size: 100% 100%;
+    }
+    width: 11px;
+    height: 11px;
+    //position: relative;
+    //top: ;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    opacity: 0.7;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+@import "elements/custom-dialog-window";
+@import "elements/dialogs";
+@import "elements/github-highlight";
+@import "unfocused";
+@import "dark-mode";

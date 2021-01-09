@@ -1,0 +1,18 @@
+.window-content.users {
+  margin-bottom: -27px;
+  height: calc(100% + 7px);
+  padding: 9px;
+
+  .rescol-wrapper {
+    height: auto;
+    margin-bottom: 10px;
+  }
+  table + footer {
+    margin-top: 10px;
+  }
+
+  .memberof-value {
+    word-break: break-all;
+    max-width: 250px;
+  }
+}

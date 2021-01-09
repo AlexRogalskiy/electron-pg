@@ -1,0 +1,41 @@
+- data = data || {}
+
+form
+  p
+    label Name
+    input(name="name", value = data.column_name type="text")
+
+  p
+    label Type
+    select(name="type")
+      option
+      each types, group in groupedTypes
+        optgroup(label = group)
+          each type in types
+            if type
+              - selected = data.udt_name && data.udt_name == type.udt_name
+              option(value = type.udt_name || type.name, title = type.description, selected = selected)= type.name
+  p
+    a(href="https://www.postgresql.org/docs/current/datatype.html", class="external docs-link") Postgres Data Types
+
+  p
+    label Default value
+    input(name="default_value", value = data.column_default type="text")
+
+  p
+    label Max length
+    input(name="max_length", value = data.character_maximum_length type="text")
+
+  p
+    label
+      input(type="hidden", name="allow_null" value="0")
+      input(type="checkbox" name="allow_null" value="1", checked = (data.is_nullable == 'YES'))
+      = "Allow null"
+
+  input.pseudo-hidden(type="submit")
+  p.buttons
+    if action == "edit"
+        button.ok Update Column
+    else
+        button.ok Add Column
+    button.cancel Cancel

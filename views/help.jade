@@ -1,0 +1,58 @@
+.help-screen
+  .sidebar
+    h4 Help
+    ul
+      li
+        a(page="about-postbird") About Postbird
+      li
+        a(page="get-postgres") Get Postgres
+      //li
+      //  a(page="sql-basics") SQL basics
+
+  .content
+    .page.about-postbird
+      h2 About Postbird
+
+      p.logo
+        img(src="public/images/icon.png")
+      p.
+        Postbird is a cross-platform PostgreSQL GUI client, written in JavaScript, runs with Electron
+      p
+        = "Source code at "
+        != link_to("github.com/paxa/postbird", "https://github.com/paxa/postbird", {class: "external"})
+
+      br
+      p
+        = `Postbird version: ${electron.remote.app.getVersion()}`
+        br
+        = `Electron version: ${process.versions.electron}`
+        br
+        = `Node version: ${process.versions.node}`
+        br
+        != `pg_dump version: <span class="pg_dump_version">...</span>`
+        br
+        != `psql version: <span class="psql_version">...</span>`
+
+    .page.get-postgres
+      h2 Get Postgres
+
+      article
+        h5 Postgres.app
+        p
+          = "Postgres.app is a simple, native Mac OS X app that runs in the menubar without the need of an installer. "
+          = "Open the app, and you have a PostgreSQL server ready and awaiting new connections. "
+          = "Close the app, and the server shuts down. "
+        a.download.external(href="http://postgresapp.com/") Download
+
+      article
+        h5 Postgres Graphical installer
+        p
+          = "An installer is available for Mac OS X that includes PostgreSQL, pgAdmin and "
+          = "the StackBuilder utility for installation of additional packages."
+        a.download.external(href="http://www.enterprisedb.com/products-services-training/pgdownload#osx") Download
+
+      article
+        h5 Using Homebrew
+
+        p
+          code brew install postgresql

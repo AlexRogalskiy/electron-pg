@@ -1,0 +1,66 @@
+.history-window
+  header
+    button.native-look.reload-btn Reload
+    button.native-look.clear-btn Clear
+  ul
+    each event in events
+      if event.type == "sql.start" && event.args[0].state != 'running'
+        - // do nothing
+      else
+        li
+          time= timeFormat(new Date(event.time))
+          .event-info
+            if event.type == "sql.start" && event.args[0].state == 'running'
+              - var query = event.args[0]
+              strong Running
+              .sql.running
+                code.pgsql= "SQL: " + query.sql
+
+            else if event.type == "sql.failed"
+              - var query = event.args[0]
+              .sql.failed
+                code.pgsql= "SQL: " + query.sql
+                span.error= JSON.stringify(query.error, null, 2)
+                span.exec-time= "(" + execTime(query.time) + ")"
+
+            else if event.type == "sql.success"
+              - var query = event.args[0]
+              .sql.success
+                code.pgsql= "SQL: " + query.sql
+                span.exec-time= "(" + execTime(query.time) + ")"
+
+            else if event.type == "connect.success"
+              - var opts = event.args[0]
+              = "Connected to server "
+              if opts
+                code.pgsql
+                  = opts.user + (opts.password ? ":<password>" : "") + "@" + opts.host + ":" + opts.port
+                  if opts.database
+                    = "/" + opts.database
+
+            else if event.type == "connect.error"
+              - var opts = event.args[1]
+              = "Failed connect to server "
+              code.pgsql
+                = opts.user + (opts.password ? ":<password>" : "") + "@" + opts.host + ":" + opts.port
+                if opts.database
+                  = "/" + opts.database
+              span.error= event.args[2].message || event.args[2]
+
+            else if event.type == "exec.start"
+              strong Executing
+              .exec.start
+                code= event.args[0].command
+
+            else if event.type == "exec.finish"
+              strong Complete
+              .exec.finish
+                code= event.args[0].command
+                span.exec-time= "(" + execTime(event.args[0].time) + ")"
+
+            else
+              .event
+                = "~"
+                = event.type
+                = " "
+                = JSON.stringify(event.args, null, 2)

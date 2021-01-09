@@ -1,0 +1,34 @@
+.window-content.procedures {
+  padding: 9px;
+  box-sizing: border-box;
+
+  h4 {
+    margin-bottom: 12px;
+  }
+
+  .rescol-wrapper {
+    margin-bottom: 10px;
+    height: auto;
+  }
+}
+
+.alertify-inner.list-languages {
+  table {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 5px;
+  }
+}
+
+span.proc-arg-list {
+  max-width: 400px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.alertify-inner.source-procedure-dialog {
+  code {
+    max-height: calc(100vh - 250px);
+    max-width: calc(100vw - 250px);
+  }
+}

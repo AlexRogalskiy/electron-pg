@@ -1,0 +1,53 @@
+.content-filter(filtered=!!state.filtered)
+  form
+    label Search:
+    select(name="filter-field")
+      each column in data.fields
+        if column.name != 'ctid'
+          option(value = column.name selected = state.filterField == column.name)= column.name
+    select(name="filter-matcher")
+      each matcher, key in matchers
+        option(value = key, selected = state.filterMatcher === key)= matcher.label
+    input(type="search" placeholder="Search" name="filter-value" value=state.filterValue)
+    span.cancel(title="Cancel Filter")
+    button Filter
+
+.rescol-wrapper(full-width=true)
+  .rescol-header-wrapper
+  .rescol-content-wrapper
+    table
+      thead
+        tr
+          each column in data.fields
+            if column.name != 'ctid'
+              - var type = column_type_label(types[column.name])
+              - var typeLabel = shorterTypeName(types[column.name].data_type);
+              - var dir = sorting.column == column.name ? sorting.direction : ''
+              th(class= 'format-' + type, title=typeLabel, sortable=column.name, sortable-dir=dir)= column.name
+      tbody
+        each row in data.rows
+          tr(data-ctid = row.ctid)
+            each column in data.fields
+              if column.name != 'ctid'
+                td
+                  != formatCell(row[column.name], types[column.name].real_format, types[column.name].data_type)
+                  != relatedRowsIcon(relations[column.name], column.name, row[column.name])
+
+
+.summary-and-pages.native-footer-bar
+  ul
+    //li
+    //  a Remove
+    //li
+    //  a Duplicate
+    li.info
+
+    li.pages.prev
+      a(exec="prevPage") Prev
+    li.pages.next
+      a(exec="nextPage") Next
+    li.reload
+      a(exec="reloadData") Reload
+    if tableType == 'BASE TABLE'
+      li
+        a(exec="addRow") Add New Row

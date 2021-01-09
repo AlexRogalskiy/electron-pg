@@ -1,0 +1,24 @@
+.window-content.info {
+  padding: 9px;
+  box-sizing: border-box;
+
+  .summary {
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 9px;
+  }
+
+  span.table-size-breakdown {
+    color: #666;
+    margin-left: 5px;
+  }
+
+  code.result {
+    white-space: pre-wrap;
+    font-family: $code-font;
+  }
+}

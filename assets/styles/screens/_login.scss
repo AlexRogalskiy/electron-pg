@@ -1,0 +1,253 @@
+$mac-block-tabs-radius: 4px;
+
+.login-screen {
+  background: $mac-window-background;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+
+  .main-window {
+    padding-left: $sidebar-width;
+  }
+
+  .middle-window {
+    @include native-panel-element;
+    font-size: 13px;
+    width: 330px;
+    margin: 40px auto 0;
+    margin-top: calc(50vh - 198px);
+    padding: 16px 20px;
+
+    .header-tabs {
+      position: relative;
+      top: -27px;
+      border-radius: $mac-block-tabs-radius;
+      height: 19px;
+      width: 100%;
+      text-align: center;
+      a {
+        background: #fff;
+        border-top: 1px solid #c8c8c8;
+        border-bottom: 1px solid #a7a7a7;
+        border-left: 1px solid #e5e5e5;
+        border-right: none;
+        font-size: 12px;
+        line-height: 20px;
+        height: 19px;
+        padding: 0 11px;
+        color: #000;
+        vertical-align: top;
+        display: inline-block;
+        &:hover {
+          cursor: default;
+          text-decoration: none;
+        }
+        &:first-child {
+          border-top-left-radius: $mac-block-tabs-radius;
+          border-bottom-left-radius: $mac-block-tabs-radius;
+          border-left: 1px solid #c1c1c1;;
+        }
+        &:last-child {
+          border-top-right-radius: $mac-block-tabs-radius;
+          border-bottom-right-radius: $mac-block-tabs-radius;
+          border-right: 1px solid #c1c1c1;;
+        }
+        &.selected {
+          background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAmCAIAAACK3mZQAAAATUlEQVQIHQXBwQHCABDDsJz3ZqcOxw/iVOLzfNnCcvwd4dBDhzl01KHBhDa4oNANDXq48OuYwQUNXbChCemhRzduh44O5uhCEjTcwrYXfElK9rAH9acAAAAASUVORK5CYII=');
+          background-size: contain;
+          color: white;
+          border-top: 1px solid #719fec;
+          border-bottom: 1px solid #3359ed;
+          border-left-color: transparent;
+        }
+        &:last-child.selected {
+          border-right: 1px solid #4c77ec;
+        }
+        &:first-child.selected {
+          border-left: 1px solid #4c77ec;
+        }
+      }
+    }
+
+    p {
+      margin: 12px 0;
+
+      &.buttons {
+        text-align: right;
+        margin-bottom: 1px;
+        padding: {
+          right: 23px;
+          top: 3px;
+        };
+
+        button {
+          display: none;
+        }
+      }
+    }
+
+    input[type=text], input[type=password], input[type=email], input[type=number], input[type=url] {
+      font-size: 12px;
+      line-height: 18px;
+      padding: 1px 4px;
+      width: 186px;
+    }
+
+    button {
+      height: 21px;
+    }
+
+    label {
+      line-height: 22px;
+      margin-right: 8px;
+
+      @include inline-block;
+
+      width: 88px;
+      text-align: right;
+    }
+
+    label + label {
+      width: auto;
+      input[type=checkbox] {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .middle-window-content {
+    display: none;
+
+    &.standard {
+      display: block;
+    }
+  }
+
+  .heroku-oauth {
+    ul.steps {
+      padding-left: 13px;
+
+      li {
+        position: relative;
+        line-height: 24px;
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          border-radius: 6px;
+          background: #999;
+          left: -12px;
+          top: 9px;
+        }
+
+        &.started:before {
+          background: orange;
+        }
+
+        &.done:before {
+          background: green;
+        }
+      }
+    }
+
+    ul.apps {
+      margin: 10px 0;
+      border-top: 1px solid #c5c5c5;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #fff;
+      @include native-items-list;
+
+      li {
+        padding: 3px 10px;
+        border-bottom: 1px solid #ccc;
+
+        button {
+          margin-left: 11px;
+          height: 20px;
+          line-height: 16px;
+        }
+
+        span {
+          line-height: 24px;
+          font-weight: bold;
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.4);
+        }
+      }
+    }
+  }
+
+  .middle-window-content.postgres-url {
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      margin-top: -10px;
+      padding: 5px;
+      box-sizing: border-box;
+      font-size: 12px;
+      font-family: $code-font;
+    }
+  }
+
+  .sidebar {
+    @include native-sidebar;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: $sidebar-width;
+
+    h4 {
+      @include native-sidebar-title;
+    }
+
+    ul {
+      @include native-items-list;
+      li[data-auto-connect="true"] {
+        &:after {
+          content: 'AUTO';
+          font-size: 9px;
+          display: inline-block;
+          vertical-align: middle;
+          float: right;
+          background: rgba(89, 216, 174, 0.42);
+          line-height: 9px;
+          padding: 2px;
+          margin-top: 2.5px;
+        }
+        &.selected:after {
+          background: rgba(30, 165, 120, 0.9);
+        }
+      }
+    }
+
+    button.add-connection {
+      padding-left: 28px;
+      background-color: #f9f9f9;
+      background-image: url("icons/add-connection.png");
+      background-repeat: no-repeat;
+      background-position: 7px 2px;
+      background-size: 15px 15px;
+      margin: 12px 0 0 8px;
+    }
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 3%;
+
+    a {
+      text-decoration: underline;
+    }
+
+    .login-with-password {
+      display: none;
+    }
+  }
+}

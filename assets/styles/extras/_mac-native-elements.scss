@@ -1,0 +1,117 @@
+$mac-window-background: #ececec;
+
+$mac-item-selected-bg: #2b66da;
+$mac-item-selected-inactive-bg: #dcdcdc;
+$mac-table-even-row-dg: #f5f5f4;
+
+$mac-sidebar-border-color: #ddddd9;
+
+$mac-footer-border-color: #c4c2c4;
+
+$mac-button-bg: #fcfcfc;
+$mac-button-bg-image: linear-gradient(to bottom, #fcfcfc 0, #f1f1f1 100%);
+$mac-button-border-color: #c2c0c2 #c2c0c2 #a19fa1;
+$mac-button-shadow: 0 1px 1px rgba(0,0,0,.06);
+
+@mixin native-items-list {
+  > li {
+    padding: 2px 8px 2px 8px;
+    position: relative;
+
+    //&:hover {
+    //  background: rgba(#000, 0.1);
+    //}
+
+    &.selected {
+      background: $mac-item-selected-bg;
+      color: white;
+    }
+  }
+}
+
+// mac's button
+.native-look {
+  padding: 0 9px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  border: 1px solid #9A9A9A;
+  border-color: $mac-button-border-color;
+  border-radius: 4px;
+  height: 21px;
+  line-height: 19px;
+  font-size: 12px;
+  color: #333;
+  background: {
+    color: $mac-button-bg;
+    image: $mac-button-bg-image;
+    size: 100% 100%;
+  };
+  box-shadow: $mac-button-shadow;
+
+  &:focus {
+    box-shadow: none;
+    outline-color: rgb(91, 157, 217);
+    outline-offset: -2px;
+    outline-radius: 16px;
+    outline-style: auto;
+    outline-width: 4.75;
+  }
+
+  &:active {
+    background-color: #ddd;
+    background-image: none;
+    outline: none;
+  }
+}
+
+@mixin native-footer-bar($footer-height: 25px) {
+  background: #e8e6e8;
+  background-image: linear-gradient(to bottom, #e8e5e8 0, #d1cfd1 100%);
+  height: $footer-height;
+  border-top: 1px solid $mac-footer-border-color;
+  box-sizing: border-box;
+  padding: 0 5px;
+  width: 100%;
+  font-size: 0;
+  overflow: hidden;
+  color: #535353;
+  font-size: 11px;
+
+  li {
+    padding: 2px 2px;
+
+    @include system-text;
+
+    display: inline-block;
+    border-right: 1px solid #C6C6C6;
+    line-height: $footer-height - 4px;
+    font-size: 12px;
+  }
+
+  li.right {
+    text-align: right;
+  }
+}
+
+@mixin native-sidebar() {
+  background: #f0f1ed; // #eff1ed; // #f5f5f4;
+  border-right: 1px solid #dadbd7;
+}
+
+@mixin native-panel-element() {
+  background: #e2e2e2;
+  border-radius: 5px;
+  border: 1px solid #dfdfdf;
+  border-top: 1px solid #d3d3d3;
+}
+
+@mixin native-sidebar-title() {
+  font-size: 13px;
+  font-weight: bold;
+  color: #666;
+  padding: 7px;
+  text-shadow: rgba(255, 255, 255, 0.3) 0px 2px 2px;
+  border-bottom: 1px dotted #abc;
+
+  @include system-text;
+}

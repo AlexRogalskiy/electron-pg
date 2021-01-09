@@ -1,0 +1,30 @@
+header
+  = "Exporting database '"
+  b= database
+  = "'"
+
+form
+  p.save-to-file
+    = "Save to file:"
+    input(type="text" name="export_to_file" readonly placeholder="click to select file...")
+  p
+    label
+      = "Export structure"
+      input(type="checkbox" name="export_structure" checked)
+  p
+    label
+      = "Export data"
+      input(type="checkbox" name="export_data" checked)
+
+  p
+    label
+      = "Objects ownership"
+      input(type="checkbox" name="objects_ownership")
+
+  code.result
+
+  p.buttons
+    button.ok Start
+    button.cancel Cancel
+  p.buttons.close-btn.is-hidden
+    button.cancel Close

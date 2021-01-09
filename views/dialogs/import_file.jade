@@ -1,0 +1,28 @@
+header
+  = "Importing File:"
+  code
+    = filename
+
+form
+  p
+    label Database
+    select(name="database")
+      each database in databases
+        option( value = database, selected = (database == currentDb) )= database
+
+      option(disabled = true) -----
+      option(value = '**create-db**') Create database
+
+  p.new-database-input.is-hidden
+    label New database
+    input(name="new_database_name")
+
+  input.pseudo-hidden(type="submit")
+
+  code.result
+
+  p.buttons
+    button.ok Import File
+    button.cancel Cancel
+  p.buttons.close-btn.is-hidden
+    button.cancel Close

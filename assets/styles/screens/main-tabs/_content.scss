@@ -1,0 +1,223 @@
+.window-content.content {
+  max-height: calc(100% - 20px);
+  height: calc(100% - 20px);
+  overflow: auto;
+
+  &.reloading {
+    li.reload {
+      background: rgba(0, 0, 0, 0.1);
+
+      a {
+        text-decoration: none;
+        cursor: default;
+      }
+    }
+  }
+
+  .rescol-wrapper {
+    height: calc(100% - 30px);
+  }
+
+  .rescol-header-wrapper {
+    &:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      height: 1px;
+      background: #d6d6d6;
+    }
+    table {
+      border: none;
+      border-bottom: 1px solid #d6d6d6;
+    }
+  }
+  .rescol-content-wrapper {
+    table {
+      border: none;
+    }
+  }
+
+  .content-filter {
+    background: #f6f6f6;
+    border-bottom: 1px solid #acacac;
+    font-size: 12px;
+    padding: 5px 7px;
+    height: 19px;
+    form * {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+    label {
+      height: 17px;
+      margin-left: 15px;
+    }
+    select {
+      background-color: #f6f6f6;
+      border: 1px solid #acacac;
+      border-radius: 4px;
+      outline: 0;
+      height: 17px;
+    }
+    button {
+      background: #f6f6f6;
+      border: 1px solid #acacac;
+      border-radius: 3.75px;
+      height: 17px;
+      padding: 1px 6px 2px;
+      line-height: 14px;
+      min-width: 50px;
+    }
+    input {
+      line-height: 15px;
+      padding: 1px 10px;
+      border: 1px solid #c5c5c5;
+      border-bottom-color: #ccc;
+      border-radius: 3.75px;
+      min-width: 250px;
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+    span.cancel {
+      background-color: #7f7f7f;
+      border-radius: 5px;
+      height: 11px;
+      width: 11px;
+      position: relative;
+      margin-left: -20px;
+      margin-right: 9px;
+      display: none;
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        background: white;
+      }
+      &:before {
+        left: 2px;
+        right: 2px;
+        height: 1px;
+        top: 5px;
+        transform: rotate(45deg);
+      }
+      &:after {
+        left: 2px;
+        right: 2px;
+        height: 1px;
+        top: 5px;
+        transform: rotate(-45deg);
+      }
+    }
+    &[filtered] span.cancel {
+      display: inline-block;
+    }
+  }
+
+  //@extend .window-content.structure
+  table {
+    tr {
+      th {
+        max-width: 200px;
+
+        @include truncate;
+      }
+
+      td {
+        &:not(.expanded) {
+          @include truncate;
+        }
+
+        &.expanded {
+          word-break: break-all;
+          white-space: pre-wrap;
+        }
+
+        min-width: 23px;
+        max-width: 250px;
+
+        span.text {
+          width: 100%;
+          min-width: 100px;
+        }
+
+        a.foreign {
+          display: inline-block;
+          margin-left: 3px;
+          cursor: pointer;
+          width: 10px;
+          height: 10px;
+          background-image: url("icons/foreign_table.png");
+          background-size: 10px 10px;
+          background-repeat: no-repeat;
+        }
+
+        span.wrong-json {
+          background: rgba(255, 192, 203, 0.56);
+        }
+
+        span.type-xml {
+          //white-space: pre-line
+        }
+
+        time {
+          @include inline-block;
+          min-width: 55px;
+        }
+
+        i.null {
+          font-style: normal;
+          color: #b8b8b8;
+          font-size: 12px;
+          opacity: 0.75;
+        }
+      }
+    }
+  }
+
+  .summary-and-pages {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-top-color: #dfdfdf;
+  }
+
+  .native-footer-bar {
+    position: fixed;
+    margin-left: $sidebar-width;
+
+    @include native-footer-bar;
+
+    li {
+      padding-right: 5px;
+    }
+
+    li + li {
+      padding-left: 5px;
+    }
+
+    li.prev {
+      display: none;
+    }
+  }
+
+  div.error {
+    padding: 20px;
+    h4 {
+      margin-bottom: 10px;
+    }
+    pre {
+      font-family: $code-font;
+      background: #f5f5f5;
+      padding: 4px 6px;
+    }
+  }
+
+  .adding-new-row {
+    input {
+      width: 100%;
+    }
+  }
+}
